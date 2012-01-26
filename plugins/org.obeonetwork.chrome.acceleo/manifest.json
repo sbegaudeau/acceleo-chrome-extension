@@ -16,5 +16,6 @@
 		"default_icon": "images/acceleo.png",
 		"popup": "popup.html"
 	},
-	"permissions": ["tabs"]
+	"permissions": ["tabs", "contextMenus"],
+	"background_page": "background.html"
 }
