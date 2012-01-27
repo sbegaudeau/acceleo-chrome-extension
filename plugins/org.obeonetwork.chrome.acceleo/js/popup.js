@@ -9,9 +9,25 @@
 **    Stephane Begaudeau (Obeo) - initial API and implementation
 *********************************************************************************/
 $().ready(function() {
-	$("a").bind("click", function(e){
-		var properties = {};
-		properties["url"] = this.attributes["href"].value;
-		chrome.tabs.create(properties, null);
-	});
+	var openLink = function(e){
+		var internal = $(this).data("internal");
+		var link = this.attributes["href"].value;
+		
+		if (internal) {			
+			$.get(link, function(page) {			
+				var x = chrome.extension.getViews({type:"popup"});
+				if (x.length>0) {
+					$(x[0].document.body).html(page);
+					$(x[0].document.body).find("a").bind("click", openLink);
+				}
+			});
+		} else {
+			var properties = {};
+			properties["url"] = link;
+			chrome.tabs.create(properties, null);
+		}
+		return false;
+	}
+	
+	$("a").bind("click", openLink);
 });

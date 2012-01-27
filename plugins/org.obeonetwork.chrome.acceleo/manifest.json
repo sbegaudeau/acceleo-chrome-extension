@@ -9,7 +9,7 @@
 **    Stephane Begaudeau (Obeo) - initial API and implementation
 *********************************************************************************/
 {
-	"name": "Acceleo 3",
+	"name": "Acceleo",
 	"version": "1.0",
 	"description": "This extension provides a collection of resources for Acceleo.",
 	"browser_action": {
